@@ -24,5 +24,5 @@ Or use [`nix`](https://nixos.org/nix/)!
 # Usage
 
 ```bash
-SPG.exe ./Config/testrun.cfg
+SPG ./Config/testrun.cfg
 ```

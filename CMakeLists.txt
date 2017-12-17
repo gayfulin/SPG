@@ -14,14 +14,14 @@ add_library(generator STATIC
             Src/set_gen_params.f90)
 target_link_libraries(generator rng)
 
-add_executable(SPG.exe Src/main.f90)
-target_link_libraries(SPG.exe generator)
+add_executable(SPG Src/main.f90)
+target_link_libraries(SPG generator)
 
-install(TARGETS SPG.exe
+install(TARGETS SPG
         RUNTIME DESTINATION bin)
 include (CTest)
 add_test(NAME SPG-testrun
-  COMMAND $<TARGET_FILE:SPG.exe> ${CMAKE_SOURCE_DIR}/Config/testrun.cfg)
+  COMMAND $<TARGET_FILE:SPG> ${CMAKE_SOURCE_DIR}/Config/testrun.cfg)
 
 # A verbose test command with valgrind checker
 add_custom_target(check ${CMAKE_COMMAND} -E env CTEST_OUTPUT_ON_FAILURE=1
