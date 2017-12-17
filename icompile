@@ -1,0 +1,39 @@
+#!/bin/bash -x
+
+ ifort -V
+ 
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# -C -traceback 
+# flag="-C -traceback -O0 -r8 -cm -openmp -w90 -w95  -check all -fpe0 -IPF_fp_speculationsafe -assume byterecl" 
+  flag="-O2 -r8 -openmp  -IPF_fp_speculationsafe -assume byterecl" 
+# flag=" -r8 -w90 -w95 -cm -openmp -O0 -I${LibSite}"
+# flag=" -r8 -w90 -w95 -cm  -check all -fpe0 "
+# "-FR -r8 -openmp -O2"
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  TopDir=`pwd`
+  echo -e ${TopDir}
+  cd Src  
+
+  ifort $flag -c fft99f.f
+  ifort $flag -c ./rng/*.f
+  ifort $flag -c set_gen_params.f90 
+  ifort $flag -c generator.f90 
+  ifort $flag -c main.f90
+
+  mv *.o ${TopDir}/Obj
+  rm *.mod
+  cd ${TopDir}
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# Linking:
+  ifort $flag -o main.exe ./Obj/*.o  
+# Execution:
+#  cp out out_prev
+#  main.exe 1>out 2>err
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# View resalts:
+# vi ./results/xi.txt
+# vi ./results/check_L05.txt
+# vi ./results/check_T02.txt
+# vi ./results/xi_time.txt
+# vi ./results/psi3.txt
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
