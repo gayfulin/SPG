@@ -19,6 +19,8 @@ cmake ..
 make && make check && make install
 ```
 
+Or use [`nix`](https://nixos.org/nix/)!
+
 # Usage
 
 ```bash
