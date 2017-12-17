@@ -436,10 +436,11 @@ Print *, '---------------------------------'
 Print *, ' '
 
 Deallocate(var_arr)
-Deallocate(Corr_arr_x, Corr_arr_y)
+Deallocate(Corr_arr_x, Corr_arr_y, Corr_arr_vert)
 Deallocate(Corr_t)
 Deallocate(num_l, num_l_y)
 Deallocate(num_t)
+Deallocate(num_vert_l)
 End If
 Deallocate(rand_field)
 
