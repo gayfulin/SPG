@@ -3,14 +3,8 @@ stdenv.mkDerivation {
   name = "SPG";
   src = ./.;
   buildInputs = [
+    cmake
     gfortran
   ];
-  buildPhase = ''
-    ./gcompile
-  '';
-  hardeningDisable = "all";
-  installPhase = ''
-    mkdir -p $out/bin
-    cp main.exe $out/bin/SPG.exe
-  '';
+  hardeningDisable = [ "all" ];
 }
