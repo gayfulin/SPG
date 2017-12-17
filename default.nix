@@ -7,7 +7,7 @@ stdenv.mkDerivation {
     gfortran
     valgrind
   ];
-  separateDebugInfo = true;
+  separateDebugInfo = stdenv.isLinux; # Currently unsupported on darwin
   hardeningDisable = [ "all" ];
   doCheck = true;
 }
